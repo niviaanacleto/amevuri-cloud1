@@ -1,0 +1,527 @@
+{
+  "release": "5.4.0",
+  "generated_at": "2026-09-17T23:48:06.866Z",
+  "total_files": 104,
+  "files": [
+    {
+      "file": ".dev.vars.example",
+      "bytes": 354,
+      "sha256": "8f2b6332dde6c4d739456b73e4eb67ffe292698864c455971d79803e4b9d8f7d"
+    },
+    {
+      "file": ".gitignore",
+      "bytes": 50,
+      "sha256": "8fc11acb6063a61bcaa83f33ed95f4be546c5dd79847d32a22353a5ebbc54575"
+    },
+    {
+      "file": "AUDITORIA.md",
+      "bytes": 8342,
+      "sha256": "6d6900a93be88579fa4978e2379e98dc19c4aef8b046ef031f5b4b6882c69698"
+    },
+    {
+      "file": "CLOUDFLARE_SETUP.md",
+      "bytes": 5063,
+      "sha256": "b9d08d635493e3d9b91c8a5f4bc8ffeee2a75a83d7ede9ae4a0340baf94f15c1"
+    },
+    {
+      "file": "CURADORIA_IMAGENS.md",
+      "bytes": 923,
+      "sha256": "89d44e31b2f0993b6d6c7cf52aa1975f0d6605d701a91c24afd35f0b95dd327b"
+    },
+    {
+      "file": "package-lock.json",
+      "bytes": 48493,
+      "sha256": "db054499b076326486110d9e1483fa23b9937158e968d0085b96dfb0a99cfad6"
+    },
+    {
+      "file": "package.json",
+      "bytes": 449,
+      "sha256": "89bb1c362f4455520a97cf2adf7770faa34702ed194f2a1f5eb666c9cba09c30"
+    },
+    {
+      "file": "public/404.html",
+      "bytes": 1640,
+      "sha256": "7b35ef435dfef2d9a09d2b492ccdddf03a2010cdccdb8ea405b0fc120f73d150"
+    },
+    {
+      "file": "public/acompanhar-pedido.html",
+      "bytes": 7747,
+      "sha256": "ce9267a105f1802f35971ef0df2d868141d83bbb3a392024f2728958cb9fb51c"
+    },
+    {
+      "file": "public/admin-pedidos.html",
+      "bytes": 8432,
+      "sha256": "d9e797f60e7d0869e083bdb0367379e1fb77f810313ee4a4e38ac09756f8dd97"
+    },
+    {
+      "file": "public/assets/amevuri-logo.webp",
+      "bytes": 23372,
+      "sha256": "fbb59decbea0ba064b627791eb51a8a706e434b71e2a7233f8318f1f68be03a6"
+    },
+    {
+      "file": "public/assets/amevuri-social.jpg",
+      "bytes": 26802,
+      "sha256": "35e9fa8391f34fa3f5b7d5b60aee8aee015f388ec8cb0218d085efbab3c199af"
+    },
+    {
+      "file": "public/assets/brand-symbol-1024.webp",
+      "bytes": 89014,
+      "sha256": "b951684f1daa68cf3a136c7315c121e3edf482936652fec1ddf2623ed2eb9dc6"
+    },
+    {
+      "file": "public/assets/brand-symbol-320.webp",
+      "bytes": 21290,
+      "sha256": "76272c057d2fc951e9587b6c4ad57c9f2af2d642e2565d4cb528f929c2981260"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-caixa.webp",
+      "bytes": 74656,
+      "sha256": "5917304544cd63f19dd572c68aa724fb0666869ad65bfadccb011b3f386ac9bb"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-difusor.webp",
+      "bytes": 111786,
+      "sha256": "dd4c656225100949298037afe0c0d6bc4cc92cab468afbc25d1597dd4b9651f1"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-home-caixa-tecnica.webp",
+      "bytes": 44736,
+      "sha256": "cddb574b19dc08dddbeb67b365dfcde7da9becd50d4e0e61f7cd155e8c156343"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-ilustracao.webp",
+      "bytes": 268738,
+      "sha256": "77dfc4a218df138895e8b9c91522e266ff2eac6f69a88851936bdc594d196fb5"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-linha.webp",
+      "bytes": 107820,
+      "sha256": "531fb80cff63838cf53e27a2db62249cd6b648245a85da32148ed50881a6c9c6"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-selo.webp",
+      "bytes": 92556,
+      "sha256": "b99ba5bc9e4a089cdaef176342232d93e250011a18b4d58541be8586295ea4fd"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-vela-horizontal.webp",
+      "bytes": 69508,
+      "sha256": "a0722704371759df2a09483c98458fe03995301904a233d5bd3b2cf295e38bc1"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-vela.webp",
+      "bytes": 94514,
+      "sha256": "d9bb969cbbbadc101ffe8b9a110f3137fa971e3e819c3f861116719277b487e8"
+    },
+    {
+      "file": "public/assets/catalog-v2/cumaru-wax-melts.webp",
+      "bytes": 103406,
+      "sha256": "7513784f9feba9270135f100045477297a905545fd40ac6417e60327cfa768f1"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-caixa.webp",
+      "bytes": 60878,
+      "sha256": "de9bb07b595a8c6f2b4d11d1f7c1e11fb402e341e3e2fb4b0a9bf87d366451f7"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-difusor.webp",
+      "bytes": 95964,
+      "sha256": "c90a127d6f4424e1c9bf8f4f5e965bb7cbaf794fa7ca1c3b2fe34130761b396e"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-home-campanha.webp",
+      "bytes": 58156,
+      "sha256": "c90277d8d8e9dca7ab6ffcdb8d48bed219f45172e954adbe235cd87bd80963bc"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-home-parfum.webp",
+      "bytes": 87488,
+      "sha256": "35ed64caf3173660a0b430bac336d17986c3348446aba7048cc6ecfb09ee407a"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-linha.webp",
+      "bytes": 96504,
+      "sha256": "fae5c0a4aab2b5ca2df98d770a86f95bfc3ed7b4d6b1985b45bddde7ca194e49"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-selo.webp",
+      "bytes": 92708,
+      "sha256": "5b3458e217eda423f540e0cec257e4727201550265b5be7266476073d94dc5a6"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-vela-dupla.webp",
+      "bytes": 65148,
+      "sha256": "831739c72e4703f8a9fbfe6356326a70212bf24cab057f57c78fba9cab59795f"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-vela-horizontal.webp",
+      "bytes": 61790,
+      "sha256": "1222b259804b073404b8b25b83b2e268ae45044dfcc38e0edfa4012c75a6242a"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-vela.webp",
+      "bytes": 77994,
+      "sha256": "04df789b4940bb2a30f01b88b51245daa8463d97901aa381b015a3962820f1c4"
+    },
+    {
+      "file": "public/assets/catalog-v2/sakura-wax-melts.webp",
+      "bytes": 95964,
+      "sha256": "bf2bbe1d415695a964730b6c10c55b760c825d96d5d613e309403bc32f9aa13b"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-atmosfera-480.webp",
+      "bytes": 14930,
+      "sha256": "0473da9d07ba848166d35c44f0fe552dc943883cf5e3464f1462799382e93079"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-atmosfera-720.webp",
+      "bytes": 25688,
+      "sha256": "aadfd914ac4d98871d495680154fd9fc2b64a34eb455e6414a6f3ea5a57108c1"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-atmosfera.webp",
+      "bytes": 60574,
+      "sha256": "500ab303b1b6da08fc41c88edd95f29369d803251a138ca214602c0ba196e96a"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-hero-480.webp",
+      "bytes": 26498,
+      "sha256": "e0f714e7f591a4b5c59c849990710354eda94cf610d6daf912b8235acf4a0d1e"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-hero-720.webp",
+      "bytes": 43786,
+      "sha256": "a00cd0a86829c0672ba82762feb70d09045f8853b321cd1d1038fbfc1bdddc32"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-hero.webp",
+      "bytes": 63114,
+      "sha256": "c17e7d3dfa16197cee9c9dbfaaf5a30137a22ccf3e0a1f0dce361b04811f7b18"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-home-parfum.webp",
+      "bytes": 15764,
+      "sha256": "83a8a0d4e89db95716266e711559514ab98f66ad0c298e05e805ff02e6051aa0"
+    },
+    {
+      "file": "public/assets/cumaru/cumaru-materials.webp",
+      "bytes": 46474,
+      "sha256": "1aa948ae10fc062801b11cd7e957b83fa83f0d66eb41bae310c68eaadd0631af"
+    },
+    {
+      "file": "public/assets/editorial/sakura-home-parfum-560.webp",
+      "bytes": 43650,
+      "sha256": "e9e394c41aa3fe217236b426e7f59a8077910cc035c69acd1dfd979283187693"
+    },
+    {
+      "file": "public/assets/editorial/sakura-home-parfum-900.webp",
+      "bytes": 132252,
+      "sha256": "8249c9d8c3b3d834ebfdc2f42862c4d4b0f2609383f4bfe22cd41d1d6befa56f"
+    },
+    {
+      "file": "public/assets/favicon-amevuri-exact.png",
+      "bytes": 25039,
+      "sha256": "b7e866ececc8034ea8d6fb09b27c5ee66fc948d8b9f61e9d77b47848d2741bda"
+    },
+    {
+      "file": "public/assets/icon-cumaru-sandalo.svg",
+      "bytes": 1482,
+      "sha256": "d27581bb77a44769a08485de1c11726861b19ea875deeaacc816d3a56f93014e"
+    },
+    {
+      "file": "public/assets/icon-sakura-musk.svg",
+      "bytes": 1359,
+      "sha256": "d1bd2892a8e3e938522d548d756181d55b9f335c214a071241ef66c7aac74e1e"
+    },
+    {
+      "file": "public/assets/products/sakura-home-detail-label-480.webp",
+      "bytes": 14480,
+      "sha256": "deefb633480f8be44c6b1da289ef11cb2d7358fd5afd377fee2592ba44a2bb9e"
+    },
+    {
+      "file": "public/assets/products/sakura-home-detail-label-640.webp",
+      "bytes": 22228,
+      "sha256": "2214026e047724db19ddde0cb102d1300f323008ea89095ab5a75ebf2dfee757"
+    },
+    {
+      "file": "public/assets/products/sakura-home-detail-label.webp",
+      "bytes": 48282,
+      "sha256": "72023b39d665880573c1e64803d9fa8a39d72dd0c1b02f81c207e4b4416b7e39"
+    },
+    {
+      "file": "public/assets/products/sakura-home-detail-pump-480.webp",
+      "bytes": 33816,
+      "sha256": "f2e0904ca042b97f24ac230fd4d40cfa40c6fb9cf397965dbf2a4e0bc96b2240"
+    },
+    {
+      "file": "public/assets/products/sakura-home-detail-pump-640.webp",
+      "bytes": 50632,
+      "sha256": "c72b9c5d093e1b3342f3cf484832a8287a9e417a1002a5ce2d9d164af98dc66b"
+    },
+    {
+      "file": "public/assets/products/sakura-home-detail-pump.webp",
+      "bytes": 96500,
+      "sha256": "e371f151bb9c81f538e6f859b5430e004d28c9c8213b37fcfedf124ffdc45aad"
+    },
+    {
+      "file": "public/assets/products/sakura-home-flatlay-480.webp",
+      "bytes": 49916,
+      "sha256": "2281209dfd158e6883045b81c66860d132d96bbc0774b595b7a09eab1761197a"
+    },
+    {
+      "file": "public/assets/products/sakura-home-flatlay-640.webp",
+      "bytes": 85108,
+      "sha256": "debcd1c4a979d924a4abb54d1782c1f77f6d2d816096e3170ffcdb20b3eeb49f"
+    },
+    {
+      "file": "public/assets/products/sakura-home-flatlay.webp",
+      "bytes": 179728,
+      "sha256": "7f1921a498892403db463ca0c5ef8a2513ffccb2311a47aa020cdbb0a471e3a4"
+    },
+    {
+      "file": "public/assets/products/sakura-home-hero-480.webp",
+      "bytes": 34662,
+      "sha256": "8c8838fe71f59ca425b9bca810f5658c690e4d21a0b508ddcaaa02bb49adbfac"
+    },
+    {
+      "file": "public/assets/products/sakura-home-hero-640.webp",
+      "bytes": 56658,
+      "sha256": "0c95717a55b6205e52a0144e3cfc4e193af5be481cf79d2cd2498f46aba164c8"
+    },
+    {
+      "file": "public/assets/products/sakura-home-hero.webp",
+      "bytes": 179678,
+      "sha256": "95edad99250cbfb83a040ad8e40897f45ce967fdab6edfcaa2b79bf4450076d0"
+    },
+    {
+      "file": "public/assets/products/sakura-home-lifestyle-480.webp",
+      "bytes": 19882,
+      "sha256": "a453e674e9fe03d4936a5f8ace24079b653074c3afbe8747de223b36c6706f72"
+    },
+    {
+      "file": "public/assets/products/sakura-home-lifestyle-640.webp",
+      "bytes": 28402,
+      "sha256": "eda46b985218d8087a6a137eae0c8d70d6e990aba31eb1b5c4f1b3cd994b6f8b"
+    },
+    {
+      "file": "public/assets/products/sakura-home-lifestyle.webp",
+      "bytes": 55328,
+      "sha256": "b71b65ee7faf73b0803ff5056682d02f62fd57627dab541818b496289f1cc5f9"
+    },
+    {
+      "file": "public/assets/products/sakura-vela-hero-480.webp",
+      "bytes": 27732,
+      "sha256": "7c41175ad718a1341c5f2eecfb223ee48b9ea3138d20cfc71b869b86da14bb4c"
+    },
+    {
+      "file": "public/assets/products/sakura-vela-hero-640.webp",
+      "bytes": 46154,
+      "sha256": "fdc3a280f1c55d3898526694194cfed831271adb557549af6a2c3b3d87bc9ba6"
+    },
+    {
+      "file": "public/assets/products/sakura-vela-hero.webp",
+      "bytes": 148400,
+      "sha256": "1668e465fd02bb5096803955f73061317d77f04eed376dc2defcecb81c10d7ee"
+    },
+    {
+      "file": "public/checkout.html",
+      "bytes": 9721,
+      "sha256": "1ea6b6c2b9659f138843eba9c2064b042f33f333426a8c87df6c4a7ad2891ed3"
+    },
+    {
+      "file": "public/colecao.html",
+      "bytes": 14014,
+      "sha256": "d6616b54e0cd663686c8c6ebc5a7c3ae628a788c8a7fea538a013205b85dfb71"
+    },
+    {
+      "file": "public/commerce.js",
+      "bytes": 24532,
+      "sha256": "0d6253d6d61a100dab986cd019f6183831178932578b0c75ce95b9e0fc199b4e"
+    },
+    {
+      "file": "public/cumaru-sandalo.html",
+      "bytes": 17425,
+      "sha256": "2b186706b4c8a04986885000aa06dcd87140c7f56ee8b49420e141cf28d72c0b"
+    },
+    {
+      "file": "public/diagnostico.html",
+      "bytes": 8190,
+      "sha256": "4f4d3e8ca472950f6e7319c841ef5209108d7e24fdc188106e563a54854853b8"
+    },
+    {
+      "file": "public/encontre-seu-aroma.html",
+      "bytes": 15994,
+      "sha256": "b128996f1471be8ca0d34e6c41ea9c4abef4caed13721384c94b44f8c250385f"
+    },
+    {
+      "file": "public/guia-perfume-para-casa.html",
+      "bytes": 9534,
+      "sha256": "0340f30893719472049fdfb3914db839346a3fe1af5d8ed2c2bebde51228069d"
+    },
+    {
+      "file": "public/index.html",
+      "bytes": 21768,
+      "sha256": "a1e3349d6ee7444a9f790f8078516c435c6f0e8edaacc5d7b150c48b6c449e2c"
+    },
+    {
+      "file": "public/journal.html",
+      "bytes": 7018,
+      "sha256": "ac8e240208cd9fae6612f695e94ff05fed100032bb9bd347fd6b82aa4497ce8b"
+    },
+    {
+      "file": "public/melhor-envio-conectar.html",
+      "bytes": 3855,
+      "sha256": "0f5020720df9be0d4930993aee820f6190110ec607a7bc99f628de778c91b06f"
+    },
+    {
+      "file": "public/pedido-recebido.html",
+      "bytes": 2357,
+      "sha256": "605fdfd72c1d81c5c97bf470bd796c1bc8df85ce8602c2eb1dd55d79de97062e"
+    },
+    {
+      "file": "public/politica-privacidade.html",
+      "bytes": 8019,
+      "sha256": "0c975a4b225ad538f488db792339b15fb2939a760b5bb088b1708014841a6394"
+    },
+    {
+      "file": "public/prive.html",
+      "bytes": 13440,
+      "sha256": "363b71223f287ba4d98137f3e7348f3c45ed81774418f52f1703c29d71ad26dc"
+    },
+    {
+      "file": "public/prive.js",
+      "bytes": 1778,
+      "sha256": "70fabd5bdba92770a03823b522b49fe67416e339bd9ee7a01c7b778d05ba076a"
+    },
+    {
+      "file": "public/produto-cumaru-sandalo.html",
+      "bytes": 12241,
+      "sha256": "d6ed7762039c7181fc4bcbadb29467657cb987ca7b06d5075b378a05ba676532"
+    },
+    {
+      "file": "public/produto-sakura-musk.html",
+      "bytes": 13625,
+      "sha256": "5fd14cf7b1670a19b1c9701e26b805d377b34112eade0564d2fd1e3a4b08eeaa"
+    },
+    {
+      "file": "public/ritual-cuidados-vela-aromatica.html",
+      "bytes": 17784,
+      "sha256": "de579a3589451f8a2d37af009da751e2a13d16bda46ee6826921196c22d0eebf"
+    },
+    {
+      "file": "public/robots.txt",
+      "bytes": 70,
+      "sha256": "1e13c0f8663887872c9665281abf1ceaad3087531fd15bca6460368dce4df985"
+    },
+    {
+      "file": "public/script.js",
+      "bytes": 10276,
+      "sha256": "290e1f4c3bf505cb832153e2d1569915b94f58cb3144b1937de6193c39de044f"
+    },
+    {
+      "file": "public/sitemap.xml",
+      "bytes": 1617,
+      "sha256": "afdac8e1ba4eee215dfe8d02e534d15965862c841b783dac90f732d7343f7f03"
+    },
+    {
+      "file": "public/sobre.html",
+      "bytes": 7724,
+      "sha256": "2a795c2d90cac0c565391600e4ee532354d350c893cb55b09b5c2741096f1885"
+    },
+    {
+      "file": "public/styles.css",
+      "bytes": 98236,
+      "sha256": "d96017d96415f1a203b9b9b97cd8e94c2a7e9b5a3126088a32fa4c9f223acd9e"
+    },
+    {
+      "file": "README.md",
+      "bytes": 2646,
+      "sha256": "8af78f15a401d6d84f39e54c5c3f8ae1feaa7367592df5c264e031ae233c590c"
+    },
+    {
+      "file": "scripts/harness.mjs",
+      "bytes": 7521,
+      "sha256": "4216fccab0efea1b6caa4d195ed0f7da14e1be6dacdc1d99e0f832901c0272c6"
+    },
+    {
+      "file": "scripts/inventory.mjs",
+      "bytes": 1367,
+      "sha256": "074c8a1beceb171f5aa84e9b0808d4f810b99e52842db830d54a67b01e7f21d1"
+    },
+    {
+      "file": "scripts/preview-test.mjs",
+      "bytes": 2128,
+      "sha256": "9a3443fcdc756be4a918b04442d6e5a5754c18044ddab6381ef411b9200254fe"
+    },
+    {
+      "file": "scripts/test.mjs",
+      "bytes": 15428,
+      "sha256": "7bb6b57c64e29ccd70a9381fbe2987c87f56172d16e53539eacfad9b388e5000"
+    },
+    {
+      "file": "scripts/validate.mjs",
+      "bytes": 5401,
+      "sha256": "408e108265927f2c4f37dfda6261a4e95253d778a0dbfa536ea2b743d88bad13"
+    },
+    {
+      "file": "src/index.js",
+      "bytes": 31340,
+      "sha256": "3052e2791fb51faf4827a1031b44803b2878738e6030879252d44f960f8e58bd"
+    },
+    {
+      "file": "src/lib/catalog.js",
+      "bytes": 2998,
+      "sha256": "12e40e48cc4cc0d6dfe6039e1efe8791e838c772e6f4f923685a38a945af6782"
+    },
+    {
+      "file": "src/lib/customer.js",
+      "bytes": 1847,
+      "sha256": "4c4fd7c0b72bc53ff19d22882c37634d0ca203851c75e2d5a92cdd5f46a6097b"
+    },
+    {
+      "file": "src/lib/http.js",
+      "bytes": 541,
+      "sha256": "d3a48f198c754f9badaa537a467a1f868bfc2b2cf63cc9e288e20e4718654810"
+    },
+    {
+      "file": "src/lib/order-events.js",
+      "bytes": 1625,
+      "sha256": "4190851416e72f839ce1b4fcaadf82103fb0da52209fbffdec3165ffb1a8b059"
+    },
+    {
+      "file": "src/lib/provider-http.js",
+      "bytes": 743,
+      "sha256": "3d3755297003da48bdea859741286523a2b6f07eaaa5dc600ac94cd311382db5"
+    },
+    {
+      "file": "src/providers/email.js",
+      "bytes": 9638,
+      "sha256": "6b41afd1886064e5f359cae40b6217781b1ca1035c353b895eb581653f478496"
+    },
+    {
+      "file": "src/providers/melhor-envio.js",
+      "bytes": 8140,
+      "sha256": "1399d5d13c5724feb465f819945e25ed42760c882ddec432e8aca29f32b3fb21"
+    },
+    {
+      "file": "src/providers/sumup.js",
+      "bytes": 3033,
+      "sha256": "49e431ae63160bbf8c2c4026c3623d2bc37dc36b5cc100b76917116aa4275362"
+    },
+    {
+      "file": "src/store.js",
+      "bytes": 11302,
+      "sha256": "0db560994de5c69f3df534f6fcdee4dbee8e7761490c52615b367b0f3f48cc4e"
+    },
+    {
+      "file": "TESTES.txt",
+      "bytes": 2479,
+      "sha256": "d666965137753ca1886419657ab7330c9e5ffabfad2f26baec47efd1f2bbd67f"
+    },
+    {
+      "file": "wrangler.jsonc",
+      "bytes": 876,
+      "sha256": "b475b90d88a4246a570ea8bd5a993dae8d47a3375b2860530d890bf71c9727c8"
+    }
+  ]
+}

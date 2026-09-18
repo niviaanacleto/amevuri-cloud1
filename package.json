@@ -1,0 +1,19 @@
+{
+  "name": "amevuri-cloudflare",
+  "private": true,
+  "version": "5.4.0",
+  "type": "module",
+  "scripts": {
+    "check": "node --experimental-vm-modules scripts/validate.mjs",
+    "inventory": "node scripts/inventory.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --experimental-vm-modules scripts/test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.86.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

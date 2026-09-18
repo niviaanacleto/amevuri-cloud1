@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "amevuri-cloud",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-14",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*", "/.netlify/functions/*"],
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "AMEVURI_STORE",
+        "class_name": "AmevuriStore"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["AmevuriStore"]
+    }
+  ],
+  "triggers": {
+    "crons": ["*/5 * * * *"]
+  },
+  "vars": {
+    "MELHOR_ENVIO_CLIENT_ID": "29241",
+    "MELHOR_ENVIO_ENV": "production",
+    "AMEVURI_ORIGIN_CEP": "24358080",
+    "MELHOR_ENVIO_USER_AGENT": "AMEVURI (contato@amevuri.com.br)"
+  }
+}

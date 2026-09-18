@@ -1,0 +1,42 @@
+PASS Cadastro Privé valida consentimentos e evita duplicidade
+PASS Compra paga credita pontos Privé uma única vez e exclui o frete
+PASS Pesos oficiais e identificadores compatíveis
+PASS Frete envia seguro unitário e não revela origem
+AMEVURI API /api/shipping-quote SERVER_ERROR 500
+AMEVURI API /api/shipping-quote SERVER_ERROR 500
+AMEVURI API /api/shipping-quote SERVER_ERROR 500
+AMEVURI API /api/shipping-quote SERVER_ERROR 500
+AMEVURI API /api/create-checkout SERVER_ERROR 400
+AMEVURI API /api/create-checkout SERVER_ERROR 400
+PASS Entradas inválidas, duplicações e quantidades são recusadas
+AMEVURI API /api/create-checkout SERVER_ERROR 500
+AMEVURI API /api/create-checkout SERVER_ERROR 500
+AMEVURI API /api/create-checkout SERVER_ERROR 500
+PASS CPF, UF e telefone são validados antes de cobrar
+PASS Frete alterado exige confirmação do novo preço
+PASS Checkout usa preços do catálogo e reserva uma vez
+PASS Requisições simultâneas não duplicam a reserva
+AMEVURI API /api/create-checkout PROVIDER_UNAVAILABLE 503
+PASS Resposta perdida é recuperada sem criar nova cobrança
+PASS Expiração repetida devolve estoque uma única vez
+AMEVURI API /api/sumup/webhook PAYMENT_MISMATCH 502
+AMEVURI API /api/sumup/webhook PAYMENT_MISMATCH 502
+AMEVURI API /api/sumup/webhook PAYMENT_MISMATCH 502
+PASS Webhook valida valor, moeda, referência e recebedor
+PASS Pagamento confirmado não regride nem duplica emails
+PASS Falha de email fica persistida e pode ser reenviada
+PASS API pública não expõe cliente ou rastreio sem email
+PASS Admin requer chave e não confirma pedido sem pagamento
+PASS Webhook Melhor Envio recusa assinatura inválida
+(node:3908) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS Webhook Melhor Envio assinado atualiza rastreio
+PASS OAuth state é consumido uma vez mesmo em concorrência
+PASS Renovação concorrente compartilha um único refresh
+PASS Falha de uma tentativa não libera estoque enquanto checkout pode ser pago
+PASS Entrega confirmada não regride com webhook atrasado
+PASS Painel mostra falhas de email e recusa URL insegura
+PASS Pedidos após os primeiros cem também entram na manutenção
+PASS Checkout vencido ainda pendente é desativado antes de liberar estoque
+PASS Transação pendente mantém reserva mesmo após vencimento da sessão
+26/26 testes aprovados.
