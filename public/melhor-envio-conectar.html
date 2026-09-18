@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#0f3b2f" />
+    <link
+      rel="icon"
+      href="/assets/favicon-amevuri-exact.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Conectar Melhor Envio | AMEVURI</title>
+    <style>
+      .integration-shell {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+        background: #f7f2ea;
+      }
+      .integration-card {
+        width: min(100%, 640px);
+        padding: 44px;
+        border: 1px solid rgba(15, 59, 47, 0.16);
+        background: #fbf8f2;
+      }
+      .integration-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 42px;
+        color: #0f3b2f;
+        text-decoration: none;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        letter-spacing: 0.22em;
+      }
+      .integration-brand img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+      }
+      .integration-card h1 {
+        font:
+          500 clamp(2.4rem, 7vw, 4.3rem)/0.98 "Cormorant Garamond",
+          Georgia,
+          serif;
+        margin: 0.35em 0;
+      }
+      .integration-card p {
+        max-width: 52ch;
+        color: #52605a;
+        line-height: 1.7;
+      }
+      .integration-form {
+        margin-top: 30px;
+        display: grid;
+        gap: 12px;
+      }
+      .integration-form label {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #b68a43;
+      }
+      .integration-form input {
+        min-height: 50px;
+        border: 1px solid rgba(15, 59, 47, 0.22);
+        background: #fff;
+        padding: 0 14px;
+        font: inherit;
+        color: #173f33;
+      }
+      .integration-form button {
+        min-height: 50px;
+        border: 1px solid #173f33;
+        background: #173f33;
+        color: #fff;
+        padding: 0 20px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .integration-note {
+        font-size: 0.78rem !important;
+        margin-top: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-nav" aria-label="Navegação da página">
+      <a class="page-back" href="/index.html" data-smart-back
+        ><span aria-hidden="true">←</span><span>Voltar</span></a
+      >
+    </div>
+    <main class="integration-shell">
+      <section class="integration-card">
+        <a class="integration-brand" href="/index.html"
+          ><img
+            src="/assets/brand-symbol-320.webp"
+            alt=""
+            decoding="async"
+          /><span>AMEVURI</span></a
+        >
+        <p class="eyebrow">Configuração privada</p>
+        <h1>Conectar<br /><em>Melhor Envio.</em></h1>
+        <p>
+          Esta página é usada apenas pela administração da AMEVURI para conceder
+          acesso à cotação de fretes. A chave abaixo é a sua chave privada de
+          configuração do Cloudflare, não é o Client Secret do Melhor Envio.
+        </p>
+        <form
+          class="integration-form"
+          method="post"
+          action="/api/melhor-envio/authorize"
+        >
+          <label for="setup_key">Chave privada de configuração</label>
+          <input
+            id="setup_key"
+            name="setup_key"
+            type="password"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Autorizar Melhor Envio</button>
+        </form>
+        <p class="integration-note">
+          A página não armazena a chave digitada no navegador.
+        </p>
+      </section>
+    </main>
+    <script src="/script.js"></script>
+  </body>
+</html>

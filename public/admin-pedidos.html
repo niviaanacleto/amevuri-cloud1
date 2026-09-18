@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#0f3b2f" />
+    <link rel="icon" href="/assets/favicon-amevuri-exact.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Gestão de pedidos | AMEVURI</title>
+  </head>
+  <body>
+    <main class="admin-orders-page section-pad" data-admin-orders>
+      <p class="eyebrow">Configuração privada</p>
+      <h1>Gestão de<br /><em>pedidos.</em></h1>
+      <p class="lead">
+        Área interna para vincular etiqueta do Melhor Envio, informar rastreio e
+        atualizar a etapa do pedido. As mudanças podem disparar emails
+        transacionais ao cliente.
+      </p>
+      <form class="admin-search" data-admin-search>
+        <label
+          >Chave privada<input
+            type="password"
+            name="key"
+            autocomplete="off"
+            required /></label
+        ><label
+          >Pedido<input
+            name="orderId"
+            placeholder="Número informado na compra"
+            required /></label
+        ><button class="btn btn-primary">Buscar pedido</button>
+      </form>
+      <p class="notice" data-admin-message>
+        Use a mesma AMEVURI_SETUP_KEY configurada no Cloudflare.
+      </p>
+      <section class="admin-order-card" data-admin-card hidden>
+        <div class="admin-order-head">
+          <div>
+            <span class="eyebrow">Pedido</span><strong data-admin-id></strong>
+          </div>
+          <div>
+            <span class="eyebrow">Cliente</span
+            ><strong data-admin-customer></strong>
+          </div>
+        </div>
+        <form data-admin-update class="admin-update-grid">
+          <label
+            >Status<select name="fulfillmentStatus">
+              <option value="">Manter status atual</option>
+              <option value="confirmed">Pagamento confirmado</option>
+              <option value="preparing">Em preparação</option>
+              <option value="generated">Etiqueta gerada</option>
+              <option value="posted">Postado / em trânsito</option>
+              <option value="delivered">Entregue</option>
+              <option value="undelivered">Não entregue / ocorrência</option>
+              <option value="paused">Entrega pausada</option>
+              <option value="suspended">Entrega suspensa</option>
+              <option value="cancelled">Cancelado</option>
+            </select></label
+          ><label
+            >ID da etiqueta Melhor Envio<input
+              name="melhorEnvioOrderId" /></label
+          ><label>Código de rastreio<input name="trackingCode" /></label
+          ><label>URL de rastreio<input type="url" name="trackingUrl" /></label
+          ><button class="btn btn-primary" type="submit">
+            Salvar e comunicar</button
+          ><button class="btn btn-ghost" type="button" data-resend-confirmation>
+            Reenviar confirmação</button
+          ><button class="btn btn-ghost" type="button" data-resend-tracking>
+            Reenviar email de rastreio
+          </button>
+        </form>
+        <div class="admin-order-summary" data-admin-summary></div>
+        <p data-admin-email-status role="status"></p>
+      </section>
+    </main>
+    <script>
+      (() => {
+        const root = document.querySelector("[data-admin-orders]"),
+          search = root.querySelector("[data-admin-search]"),
+          update = root.querySelector("[data-admin-update]"),
+          msg = root.querySelector("[data-admin-message]"),
+          card = root.querySelector("[data-admin-card]");
+        let current = null,
+          key = "";
+        const preset = new URLSearchParams(location.search).get("order");
+        if (preset) search.elements.orderId.value = preset;
+        async function call(method, body) {
+          const id = body?.orderId || search.elements.orderId.value;
+          const url =
+            "/api/admin-order" +
+            (method === "GET" ? `?orderId=${encodeURIComponent(id)}` : "");
+          const r = await fetch(url, {
+            method,
+            headers: {
+              accept: "application/json",
+              "content-type": "application/json",
+              "x-amevuri-setup-key": key,
+            },
+            body: method === "POST" ? JSON.stringify(body) : undefined,
+          });
+          const d = await r.json().catch(() => ({}));
+          if (!r.ok || !d.ok)
+            throw new Error(d.error || "Falha na gestão do pedido.");
+          return d.order;
+        }
+        function render(o) {
+          current = o;
+          const pending = (o.notifications || []).filter(
+            (n) => n.state !== "sent",
+          );
+          root.querySelector("[data-admin-email-status]").textContent =
+            pending.length
+              ? `${pending.length} mensagem(ns) aguardando envio. ${pending.find((n) => n.lastError)?.lastError || "Nova tentativa automática programada."}`
+              : "Nenhuma mensagem pendente de envio.";
+          if (o.stockAttention)
+            root.querySelector("[data-admin-email-status]").textContent +=
+              " Há um pagamento tardio que exige conferência do estoque.";
+          card.hidden = false;
+          root.querySelector("[data-admin-id]").textContent = o.id;
+          root.querySelector("[data-admin-customer]").textContent =
+            `${o.customer?.name || ""} · ${o.customer?.email || ""}`;
+          update.elements.melhorEnvioOrderId.value = o.melhorEnvioOrderId || "";
+          update.elements.trackingCode.value = o.trackingCode || "";
+          update.elements.trackingUrl.value = o.trackingUrl || "";
+          root.querySelector("[data-admin-summary]").innerHTML =
+            `<p><strong>Status:</strong> ${o.fulfillmentStatus || o.status}</p><p><strong>Frete:</strong> ${o.shipping?.company || ""} · ${o.shipping?.service || ""}</p><p><strong>Total:</strong> R$ ${Number(
+              o.total || 0,
+            )
+              .toFixed(2)
+              .replace(".", ",")}</p>`;
+        }
+        search.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          key = search.elements.key.value;
+          msg.textContent = "Buscando pedido…";
+          try {
+            render(await call("GET"));
+            msg.textContent = "Pedido localizado.";
+          } catch (err) {
+            card.hidden = true;
+            msg.textContent = err.message;
+          }
+        });
+        update.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          if (!current) return;
+          msg.textContent = "Salvando atualização…";
+          const data = Object.fromEntries(new FormData(update).entries());
+          try {
+            render(await call("POST", { orderId: current.id, ...data }));
+            msg.textContent =
+              "Pedido atualizado. Se a etapa exige comunicação, o email foi solicitado.";
+          } catch (err) {
+            msg.textContent = err.message;
+          }
+        });
+        root
+          .querySelector("[data-resend-confirmation]")
+          .addEventListener("click", async () => {
+            if (!current) return;
+            msg.textContent = "Reenviando confirmação…";
+            try {
+              render(
+                await call("POST", {
+                  orderId: current.id,
+                  sendConfirmationEmail: true,
+                }),
+              );
+              msg.textContent = "Email de confirmação reenviado.";
+            } catch (err) {
+              msg.textContent = err.message;
+            }
+          });
+        root
+          .querySelector("[data-resend-tracking]")
+          .addEventListener("click", async () => {
+            if (!current) return;
+            msg.textContent = "Reenviando email de rastreio…";
+            try {
+              render(
+                await call("POST", {
+                  orderId: current.id,
+                  trackingCode: update.elements.trackingCode.value,
+                  trackingUrl: update.elements.trackingUrl.value,
+                  sendTrackingEmail: true,
+                }),
+              );
+              msg.textContent = "Email de rastreio reenviado.";
+            } catch (err) {
+              msg.textContent = err.message;
+            }
+          });
+      })();
+    </script>
+  </body>
+</html>

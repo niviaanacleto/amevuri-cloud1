@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f3b2f" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link
+      rel="icon"
+      href="/assets/favicon-amevuri-exact.png"
+      type="image/png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Acompanhar pedido | AMEVURI</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/index.html"
+        ><img
+          class="brand-mark"
+          src="/assets/brand-symbol-320.webp"
+          alt=""
+          width="40"
+          height="37"
+        /><span>AMEVURI</span></a
+      >
+    </header>
+    <div class="page-nav">
+      <a class="page-back" href="/index.html" data-smart-back
+        ><span aria-hidden="true">←</span><span>Voltar</span></a
+      >
+    </div>
+    <main class="order-track-page section-pad" data-order-track>
+      <p class="eyebrow">Acompanhamento</p>
+      <h1>Seu pedido,<br /><em>em cada etapa.</em></h1>
+      <p class="lead">
+        Informe o número do pedido e o mesmo email utilizado na compra. Aqui
+        você acompanha confirmação, preparação, envio, rastreio e entrega.
+      </p>
+      <form class="track-form" data-track-form>
+        <label
+          >Número do pedido<input
+            name="orderId"
+            placeholder="Número informado na compra"
+            required
+        /></label>
+        <label
+          >Email da compra<input
+            type="email"
+            name="email"
+            autocomplete="email"
+            required
+        /></label>
+        <button class="btn btn-primary" type="submit">Acompanhar pedido</button>
+      </form>
+      <p class="notice" data-track-message>
+        Se o pedido já tiver código de rastreio, ele aparecerá aqui
+        automaticamente.
+      </p>
+      <section class="track-result" data-track-result hidden>
+        <div class="track-status">
+          <span class="eyebrow">Status atual</span
+          ><strong data-track-status>A consultar</strong
+          ><small data-track-updated></small>
+        </div>
+        <div class="track-timeline" data-track-timeline></div>
+        <div class="tracking-card" data-tracking-card hidden>
+          <span>Código de rastreio</span><strong data-tracking-code></strong
+          ><a
+            class="text-link"
+            data-tracking-link
+            target="_blank"
+            rel="noopener"
+            >Acompanhar na transportadora →</a
+          >
+        </div>
+        <div class="track-items" data-track-items></div>
+      </section>
+    </main>
+    <footer class="footer section-pad">
+      <div class="footer-brand">
+        <img
+          src="/assets/amevuri-logo.webp"
+          alt="AMEVURI"
+          width="180"
+          height="180"
+        />
+        <p>Perfume, matéria e memória.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/colecao">Criações</a
+        ><a href="/acompanhar-pedido">Acompanhar pedido</a
+        ><a href="https://wa.me/5521971133616" target="_blank" rel="noopener"
+          >WhatsApp · (21) 97113 3616</a
+        >
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 AMEVURI</span><span>Perfumaria para o lar · Brasil</span>
+      </div>
+    </footer>
+    <script src="/script.js"></script>
+    <script>
+      (() => {
+        const root = document.querySelector("[data-order-track]"),
+          form = root.querySelector("[data-track-form]"),
+          msg = root.querySelector("[data-track-message]"),
+          result = root.querySelector("[data-track-result]");
+        const q = new URLSearchParams(location.search).get("order");
+        if (q) form.elements.orderId.value = q;
+        const labels = {
+          confirmed: "Pagamento confirmado",
+          preparing: "Em preparação",
+          generated: "Etiqueta gerada",
+          shipped: "Em trânsito",
+          posted: "Em trânsito",
+          delivered: "Entregue",
+          undelivered: "Ocorrência na entrega",
+          paused: "Entrega pausada",
+          suspended: "Entrega suspensa",
+          cancelled: "Cancelado",
+          reserved: "Pagamento em andamento",
+          failed: "Pagamento não concluído",
+          expired: "Pagamento expirado",
+        };
+        const steps = ["confirmed", "preparing", "posted", "delivered"];
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          msg.textContent = "Consultando seu pedido…";
+          result.hidden = true;
+          const body = Object.fromEntries(new FormData(form).entries());
+          try {
+            const r = await fetch("/api/order-status", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+                accept: "application/json",
+              },
+              body: JSON.stringify(body),
+            });
+            const d = await r.json();
+            if (!r.ok || !d.ok) {
+              msg.textContent =
+                d.error || "Não foi possível localizar o pedido.";
+              return;
+            }
+            const o = d.order;
+            msg.textContent = "Acompanhamento atualizado.";
+            result.hidden = false;
+            root.querySelector("[data-track-status]").textContent =
+              o.statusLabel ||
+              labels[o.fulfillmentStatus] ||
+              labels[o.status] ||
+              "Em acompanhamento";
+            root.querySelector("[data-track-updated]").textContent = o.updatedAt
+              ? "Atualizado em " + new Date(o.updatedAt).toLocaleString("pt-BR")
+              : "";
+            const stageMap = {
+              confirmed: 0,
+              paid: 0,
+              preparing: 1,
+              generated: 1,
+              shipped: 2,
+              posted: 2,
+              delivered: 3,
+              undelivered: 2,
+              paused: 2,
+              suspended: 2,
+            };
+            const active = stageMap[o.fulfillmentStatus] ?? -1;
+            root.querySelector("[data-track-timeline]").innerHTML = steps
+              .map(
+                (s, i) =>
+                  `<div class="track-step ${active >= i ? "is-done" : ""}"><i></i><span>${labels[s]}</span></div>`,
+              )
+              .join("");
+            const card = root.querySelector("[data-tracking-card]");
+            if (o.trackingCode || o.trackingUrl) {
+              card.hidden = false;
+              root.querySelector("[data-tracking-code]").textContent =
+                o.trackingCode || "Disponível no link";
+              const a = root.querySelector("[data-tracking-link]");
+              if (o.trackingUrl && /^https:\/\//i.test(o.trackingUrl)) {
+                a.href = o.trackingUrl;
+                a.hidden = false;
+              } else a.hidden = true;
+            } else card.hidden = true;
+            root.querySelector("[data-track-items]").innerHTML = (o.items || [])
+              .map(
+                (i) =>
+                  `<p><strong>${i.name} · ${i.size}</strong><span>${i.fragrance} × ${i.quantity}</span></p>`,
+              )
+              .join("");
+          } catch {
+            msg.textContent =
+              "Não foi possível consultar o pedido agora. Tente novamente em instantes.";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

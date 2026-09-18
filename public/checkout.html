@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f3b2f" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link
+      rel="icon"
+      href="/assets/favicon-amevuri-exact.png"
+      type="image/png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Checkout | AMEVURI</title>
+  </head>
+  <body>
+    <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+    <header class="site-header" id="topo">
+      <a class="brand" href="/index.html" aria-label="AMEVURI, início"
+        ><img
+          class="brand-mark"
+          src="/assets/brand-symbol-320.webp"
+          alt=""
+          width="40"
+          height="37"
+          decoding="async"
+        /><span>AMEVURI</span></a
+      ><button
+        class="menu-btn"
+        aria-expanded="false"
+        aria-controls="menu"
+        aria-label="Abrir menu"
+      >
+        <span></span><span></span>
+      </button>
+      <nav id="menu" class="nav" aria-label="Navegação principal">
+        <a href="/colecao">Criações</a
+        ><a href="/encontre-seu-aroma">Encontre seu aroma</a
+        ><a href="/sobre">A AMEVURI</a><a href="/journal">Journal</a><a href="/prive">Privé</a
+        ><a href="/acompanhar-pedido">Acompanhar pedido</a
+        ><a class="nav-cta" href="/colecao">Continuar escolhendo</a>
+      </nav>
+    </header>
+    <div class="page-nav" aria-label="Navegação da página">
+      <a class="page-back" href="/colecao" data-smart-back>
+        <span aria-hidden="true">←</span><span>Voltar</span>
+      </a>
+    </div>
+    <main id="conteudo" data-checkout>
+      <section class="checkout-hero section-pad">
+        <p class="eyebrow">Checkout AMEVURI</p>
+        <h1>Seu ritual,<br /><em>a caminho de casa.</em></h1>
+        <p class="lead">
+          Revise sua escolha, informe o destino e siga para o pagamento. O
+          pagamento é realizado no ambiente seguro da SumUp.
+        </p>
+      </section>
+      <section class="checkout-empty section-pad" data-checkout-empty hidden>
+        <h2>Sua sacola está vazia.</h2>
+        <p>
+          Volte às criações para escolher a atmosfera que deseja levar para
+          casa.
+        </p>
+        <a class="btn btn-primary" href="/colecao">Conhecer as criações</a>
+      </section>
+      <section class="checkout-layout section-pad" data-checkout-body>
+        <div class="checkout-flow">
+          <section class="checkout-step">
+            <p class="checkout-step-no">01</p>
+            <div>
+              <h2>Para quem enviamos?</h2>
+              <form class="customer-form" data-customer-form>
+                <div class="field full">
+                  <label
+                    >Nome completo<input
+                      name="name"
+                      autocomplete="name"
+                      required
+                  /></label>
+                </div>
+                <div class="field">
+                  <label
+                    >Email<input
+                      type="email"
+                      name="email"
+                      autocomplete="email"
+                      required
+                  /></label>
+                </div>
+                <div class="field">
+                  <label
+                    >Telefone<input
+                      name="phone"
+                      inputmode="tel"
+                      autocomplete="tel"
+                      required
+                  /></label>
+                </div>
+                <div class="field">
+                  <label
+                    >CPF<input
+                      name="cpf"
+                      inputmode="numeric"
+                      maxlength="14"
+                      required
+                  /></label>
+                </div>
+                <div class="field">
+                  <label
+                    >CEP<input
+                      name="postalCode"
+                      inputmode="numeric"
+                      maxlength="9"
+                      autocomplete="postal-code"
+                      required
+                  /></label>
+                </div>
+                <div class="field full">
+                  <label
+                    >Rua / Avenida<input
+                      name="street"
+                      autocomplete="address-line1"
+                      required
+                  /></label>
+                </div>
+                <div class="field small">
+                  <label>Número<input name="number" required /></label>
+                </div>
+                <div class="field">
+                  <label
+                    >Complemento<input
+                      name="complement"
+                      autocomplete="address-line2"
+                  /></label>
+                </div>
+                <div class="field">
+                  <label>Bairro<input name="neighborhood" required /></label>
+                </div>
+                <div class="field">
+                  <label
+                    >Cidade<input
+                      name="city"
+                      autocomplete="address-level2"
+                      required
+                  /></label>
+                </div>
+                <div class="field small">
+                  <label
+                    >UF<input
+                      name="state"
+                      maxlength="2"
+                      autocomplete="address-level1"
+                      required
+                  /></label>
+                </div>
+              </form>
+            </div>
+          </section>
+          <section class="checkout-step">
+            <p class="checkout-step-no">02</p>
+            <div>
+              <h2>Como chega até você?</h2>
+              <p class="checkout-copy">
+                Informe seu CEP para consultar valores e prazos de entrega
+                disponíveis para sua sacola.
+              </p>
+              <button class="btn btn-ghost" type="button" data-shipping-calc>
+                Calcular frete
+              </button>
+              <p
+                class="shipping-status notice"
+                data-shipping-status
+                role="status"
+                aria-live="polite"
+              >
+                Informe o CEP para consultar o frete em tempo real.
+              </p>
+              <div class="shipping-quotes" data-shipping-quotes></div>
+            </div>
+          </section>
+          <section class="checkout-step">
+            <p class="checkout-step-no">03</p>
+            <div>
+              <h2>Pagamento</h2>
+              <p class="checkout-copy">
+                Ao continuar, você será direcionado ao ambiente seguro da SumUp
+                para escolher entre as formas de pagamento disponíveis para esta
+                compra.
+              </p>
+              <button class="btn btn-primary" type="button" data-go-payment>
+                Continuar para pagamento seguro
+              </button>
+              <p class="checkout-status notice" data-checkout-status>
+                Pagamento protegido pela SumUp. Nenhum dado de cartão é
+                processado pelos servidores da AMEVURI.
+              </p>
+              <p class="checkout-security-note">
+                Após pagar, use o botão na página da SumUp para voltar à AMEVURI
+                e consultar a confirmação.
+              </p>
+            </div>
+          </section>
+        </div>
+        <aside class="order-summary">
+          <p class="eyebrow">Sua sacola</p>
+          <div data-checkout-items></div>
+          <div class="summary-line">
+            <span>Subtotal</span><strong data-checkout-subtotal>R$ 0,00</strong>
+          </div>
+          <div class="summary-line">
+            <span>Frete</span
+            ><strong data-checkout-shipping>A consultar</strong>
+          </div>
+          <div class="summary-line total">
+            <span>Total</span><strong data-checkout-total>R$ 0,00</strong>
+          </div>
+          <p class="summary-small">
+            A disponibilidade é confirmada ao iniciar o pagamento. Revise o
+            total antes de continuar.
+          </p>
+        </aside>
+      </section>
+    </main>
+    <footer class="footer section-pad">
+      <div class="footer-brand">
+        <img
+          src="/assets/amevuri-logo.webp"
+          alt="AMEVURI"
+          width="180"
+          height="180"
+          loading="lazy"
+          decoding="async"
+        />
+        <p>Perfume, matéria e memória.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/colecao">Criações</a
+        ><a href="/encontre-seu-aroma">Encontre seu aroma</a
+        ><a href="/journal">Journal</a><a href="/prive">AMEVURI Privé</a
+        ><a href="/acompanhar-pedido">Acompanhar pedido</a
+        ><a
+          href="https://www.instagram.com/amevuri/"
+          target="_blank"
+          rel="noopener"
+          >Instagram @amevuri</a
+        ><a href="https://wa.me/5521971133616" target="_blank" rel="noopener"
+          >WhatsApp · (21) 97113 3616</a
+        ><a href="/politica-privacidade">Privacidade</a>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 AMEVURI</span><span>Perfumaria para o lar · Brasil</span>
+      </div>
+    </footer>
+    <script src="/script.js"></script>
+    <script src="/commerce.js"></script>
+  </body>
+</html>

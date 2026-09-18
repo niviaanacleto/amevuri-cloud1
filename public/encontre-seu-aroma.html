@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Encontre seu Aroma | AMEVURI</title>
+    <meta
+      name="description"
+      content="Descubra qual atmosfera e fragrância AMEVURI combinam com sua casa."
+    />
+    <style>
+      :root {
+        --green: #103d30;
+        --ivory: #f6f0e7;
+        --gold: #b78a43;
+        --ink: #17392f;
+        --muted: #6a706b;
+        --line: #d9cfbf;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: Arial, Helvetica, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--ivory);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.55;
+      }
+      .wrap {
+        width: min(100% - 36px, 1040px);
+        margin: auto;
+      }
+      .top {
+        padding: 26px 0;
+        border-bottom: 1px solid rgba(23, 57, 47, 0.12);
+      }
+      .brand {
+        font: 600 1.1rem var(--serif);
+        letter-spacing: 0.28em;
+        color: var(--green);
+        text-decoration: none;
+      }
+      .hero {
+        padding: 78px 0 38px;
+      }
+      .eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 0 0 14px;
+      }
+      .hero h1 {
+        font: 500 clamp(3rem, 8vw, 6.2rem)/0.95 var(--serif);
+        margin: 0;
+        max-width: 900px;
+      }
+      .hero h1 em {
+        font-weight: 400;
+      }
+      .lead {
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        margin: 26px 0 0;
+      }
+      .quiz {
+        padding: 20px 0 80px;
+      }
+      .progress {
+        height: 2px;
+        background: #ded5c7;
+        margin: 0 0 44px;
+      }
+      .progress span {
+        display: block;
+        width: 25%;
+        height: 100%;
+        background: var(--gold);
+        transition: width 0.25s;
+      }
+      .step,
+      .result {
+        display: none;
+      }
+      .step.active,
+      .result.active {
+        display: block;
+      }
+      .step h2,
+      .result h2 {
+        font: 500 clamp(2.2rem, 5vw, 4.4rem)/1.05 var(--serif);
+        margin: 0 0 30px;
+      }
+      .options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+      .options button {
+        appearance: none;
+        background: transparent;
+        color: var(--ink);
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 24px;
+        text-align: left;
+        min-height: 112px;
+        font: 500 1.25rem/1.25 var(--serif);
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .options button:hover,
+      .options button:focus {
+        background: var(--green);
+        color: var(--ivory);
+        outline: none;
+      }
+      .navrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .back {
+        border: 0;
+        background: none;
+        color: var(--green);
+        font: 500 0.9rem var(--sans);
+        cursor: pointer;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--gold);
+      }
+      .counter {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+      .result-card {
+        border: 1px solid var(--line);
+        padding: 30px;
+        margin: 28px 0;
+      }
+      .result-card span {
+        display: block;
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .result-card h3 {
+        font: 500 2rem var(--serif);
+        margin: 10px 0;
+      }
+      .result-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 22px;
+        border: 1px solid var(--green);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.86rem;
+      }
+      .primary {
+        background: var(--green);
+        color: var(--ivory);
+      }
+      .ghost {
+        color: var(--green);
+        background: transparent;
+      }
+      .reset {
+        margin-top: 22px;
+        border: 0;
+        background: none;
+        color: var(--green);
+        border-bottom: 1px solid var(--gold);
+        padding: 0 0 4px;
+        cursor: pointer;
+      }
+      .quote {
+        background: var(--green);
+        color: var(--ivory);
+        padding: 72px 0;
+        text-align: center;
+      }
+      .quote blockquote {
+        font: 400 clamp(2.3rem, 5vw, 4.8rem)/1.02 var(--serif);
+        margin: 0 auto;
+        max-width: 900px;
+      }
+      .footer {
+        padding: 30px 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .debug {
+        display: none;
+        color: #8a2d2d;
+        background: #fff1f1;
+        padding: 12px;
+        margin: 16px 0;
+      }
+      @media (max-width: 680px) {
+        .hero {
+          padding-top: 54px;
+        }
+        .options {
+          grid-template-columns: 1fr;
+        }
+        .options button {
+          min-height: 88px;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap"><a class="brand" href="/">AMEVURI</a></div>
+    </header>
+    <div class="page-nav" aria-label="Navegação da página">
+      <a class="page-back" href="/index.html" data-smart-back>
+        <span aria-hidden="true">←</span><span>Voltar</span>
+      </a>
+    </div>
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <p class="eyebrow">Curadoria AMEVURI</p>
+          <h1>Antes do aroma,<br /><em>existe uma sensação.</em></h1>
+          <p class="lead">
+            Responda quatro perguntas simples. Não há resposta certa: apenas
+            pistas sobre a atmosfera que faz sua casa parecer mais sua.
+          </p>
+          <p class="quiz-time">Leva menos de 1 minuto · resultado imediato</p>
+        </div>
+      </section>
+      <section class="quiz">
+        <div class="wrap" id="quiz">
+          <div class="progress"><span id="progress"></span></div>
+          <div class="debug" id="debug"></div>
+          <article class="step active" data-step="1">
+            <p class="eyebrow">01 · Ao chegar em casa</p>
+            <h2>O que você mais deseja sentir?</h2>
+            <div class="options">
+              <button type="button" data-answer="refugio">
+                Silêncio e desaceleração</button
+              ><button type="button" data-answer="presenca">
+                Personalidade e presença</button
+              ><button type="button" data-answer="leveza">
+                Leveza e claridade</button
+              ><button type="button" data-answer="aconchego">
+                Calor e acolhimento
+              </button>
+            </div>
+            <div class="navrow">
+              <span></span><span class="counter">1 de 4</span>
+            </div>
+          </article>
+          <article class="step" data-step="2">
+            <p class="eyebrow">02 · O espaço</p>
+            <h2>Qual ambiente você imagina perfumando?</h2>
+            <div class="options">
+              <button type="button" data-answer="refugio">
+                Quarto ou espaço de descanso</button
+              ><button type="button" data-answer="presenca">
+                Sala ou ambiente social</button
+              ><button type="button" data-answer="leveza">
+                Lavabo, closet ou espaço claro</button
+              ><button type="button" data-answer="aconchego">
+                Um canto de leitura ou encontro
+              </button>
+            </div>
+            <div class="navrow">
+              <button type="button" class="back" data-back>Voltar</button
+              ><span class="counter">2 de 4</span>
+            </div>
+          </article>
+          <article class="step" data-step="3">
+            <p class="eyebrow">03 · A intensidade</p>
+            <h2>Como o perfume deve se apresentar?</h2>
+            <div class="options">
+              <button type="button" data-answer="leveza">
+                Quase como uma presença ao fundo</button
+              ><button type="button" data-answer="refugio">
+                Envolvente, mas sereno</button
+              ><button type="button" data-answer="presenca">
+                Marcante e memorável</button
+              ><button type="button" data-answer="aconchego">
+                Quente e confortável
+              </button>
+            </div>
+            <div class="navrow">
+              <button type="button" class="back" data-back>Voltar</button
+              ><span class="counter">3 de 4</span>
+            </div>
+          </article>
+          <article class="step" data-step="4">
+            <p class="eyebrow">04 · A memória</p>
+            <h2>Que imagem parece mais sua?</h2>
+            <div class="options">
+              <button type="button" data-answer="refugio">
+                Lençóis limpos, luz baixa, silêncio</button
+              ><button type="button" data-answer="presenca">
+                Madeira, livros, jantar que se prolonga</button
+              ><button type="button" data-answer="leveza">
+                Flores claras, janela aberta, manhã</button
+              ><button type="button" data-answer="aconchego">
+                Manta, chá, conversa sem pressa
+              </button>
+            </div>
+            <div class="navrow">
+              <button type="button" class="back" data-back>Voltar</button
+              ><span class="counter">4 de 4</span>
+            </div>
+          </article>
+          <section class="result" id="result">
+            <p class="eyebrow">Sua atmosfera AMEVURI</p>
+            <h2 id="resultTitle"></h2>
+            <p class="lead" id="resultCopy"></p>
+            <div class="result-card">
+              <span>Curadoria inicial</span>
+              <h3 id="resultProduct"></h3>
+              <p id="resultNotes"></p>
+            </div>
+            <div class="actions">
+              <a class="btn primary" id="resultLink" href="#"
+                >Conhecer a criação</a
+              ><a
+                class="btn ghost"
+                id="resultWhats"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                >Falar com a curadoria</a
+              >
+            </div>
+            <button class="reset" type="button" id="reset">
+              Refazer a curadoria
+            </button>
+          </section>
+        </div>
+      </section>
+      <section class="quote">
+        <div class="wrap">
+          <blockquote>
+            “O perfume certo não precisa dizer quem você é.<br /><em
+              >Ele apenas faz o espaço reconhecer você.</em
+            >”
+          </blockquote>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="wrap">© 2026 AMEVURI · Perfumaria para o lar</div>
+    </footer>
+    <script>
+      (function () {
+        "use strict";
+        const steps = [...document.querySelectorAll(".step")];
+        const progress = document.getElementById("progress");
+        const result = document.getElementById("result");
+        const debug = document.getElementById("debug");
+        let step = 1;
+        let answers = [];
+        const configs = {
+          refugio: {
+            title: "Refúgio",
+            copy: "Você procura uma atmosfera que reduza o ruído do dia e devolva intimidade ao espaço. Perfumes macios, envolventes e próximos tendem a fazer sentido para você.",
+            product: "Cumaru & Sândalo",
+            notes: "Madeiras quentes · cremosidade · presença serena",
+            link: "produto-cumaru-sandalo.html",
+          },
+          presenca: {
+            title: "Presença",
+            copy: "Você gosta quando a casa tem assinatura. Procura fragrâncias com personalidade, profundidade e uma memória que permaneça depois do primeiro instante.",
+            product: "Cumaru & Sândalo",
+            notes: "Cumaru · sândalo · madeiras envolventes",
+            link: "produto-cumaru-sandalo.html",
+          },
+          leveza: {
+            title: "Leveza",
+            copy: "Você se aproxima de atmosferas luminosas, delicadas e arejadas. Prefere uma fragrância que acompanhe o ambiente com suavidade.",
+            product: "Árvore de Sakura & Musk",
+            notes: "Flores luminosas · frutas suaves · musk",
+            link: "produto-sakura-musk.html",
+          },
+          aconchego: {
+            title: "Aconchego",
+            copy: "Para você, o perfume da casa deve aproximar: trazer calor, conforto e a sensação de que o tempo pode desacelerar um pouco.",
+            product: "Cumaru & Sândalo",
+            notes: "Madeiras macias · calor · conforto",
+            link: "produto-cumaru-sandalo.html",
+          },
+        };
+        function show(n) {
+          step = n;
+          steps.forEach((s) =>
+            s.classList.toggle("active", Number(s.dataset.step) === n),
+          );
+          result.classList.remove("active");
+          progress.style.width = n * 25 + "%";
+          window.scrollTo({
+            top: document.getElementById("quiz").offsetTop - 20,
+            behavior: "smooth",
+          });
+        }
+        function finish() {
+          steps.forEach((s) => s.classList.remove("active"));
+          const count = { refugio: 0, presenca: 0, leveza: 0, aconchego: 0 };
+          answers.forEach((v) => count[v]++);
+          const priority = ["refugio", "presenca", "leveza", "aconchego"];
+          let winner = priority[0];
+          priority.forEach((k) => {
+            if (count[k] > count[winner]) winner = k;
+          });
+          const c = configs[winner];
+          document.getElementById("resultTitle").textContent = c.title;
+          document.getElementById("resultCopy").textContent = c.copy;
+          document.getElementById("resultProduct").textContent = c.product;
+          document.getElementById("resultNotes").textContent = c.notes;
+          document.getElementById("resultLink").href = c.link;
+          const msg =
+            "Olá, fiz a curadoria AMEVURI e minha atmosfera foi " +
+            c.title +
+            ". Quero ajuda para escolher uma fragrância.";
+          document.getElementById("resultWhats").href =
+            "https://wa.me/5521971133616?text=" + encodeURIComponent(msg);
+          result.classList.add("active");
+          progress.style.width = "100%";
+          result.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        document.addEventListener("click", function (e) {
+          const answer = e.target.closest("[data-answer]");
+          if (answer) {
+            answers[step - 1] = answer.dataset.answer;
+            if (step < 4) {
+              show(step + 1);
+            } else {
+              finish();
+            }
+            return;
+          }
+          const back = e.target.closest("[data-back]");
+          if (back) {
+            answers.splice(step - 1, 1);
+            show(Math.max(1, step - 1));
+            return;
+          }
+        });
+        document.getElementById("reset").addEventListener("click", function () {
+          answers = [];
+          show(1);
+        });
+        window.addEventListener("error", function (ev) {
+          debug.style.display = "block";
+          debug.textContent = "Ocorreu um erro no teste: " + ev.message;
+        });
+      })();
+    </script>
+  </body>
+</html>

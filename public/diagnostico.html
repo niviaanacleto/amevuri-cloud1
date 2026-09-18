@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#0f3b2f" />
+    <link
+      rel="icon"
+      href="/assets/favicon-amevuri-exact.png"
+      type="image/png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Diagnóstico técnico | AMEVURI</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/index.html"
+        ><img
+          class="brand-mark"
+          src="/assets/brand-symbol-320.webp"
+          alt=""
+          width="40"
+          height="37"
+        /><span>AMEVURI</span></a
+      >
+    </header>
+    <div class="page-nav">
+      <a class="page-back" href="/index.html" data-smart-back
+        ><span aria-hidden="true">←</span><span>Voltar</span></a
+      >
+    </div>
+    <main class="diagnostic-page section-pad">
+      <p class="eyebrow">Diagnóstico público · sem dados secretos</p>
+      <h1>Diagnóstico<br /><em>da loja.</em></h1>
+      <p class="lead">
+        Esta página confirma se o site está publicado, se as Cloudflare Worker
+        APIs estão online e se Melhor Envio e SumUp estão configurados. Nenhuma
+        chave é exibida.
+      </p>
+      <div class="diagnostic-grid">
+        <article class="diagnostic-card">
+          <span class="diag-dot ok"></span>
+          <div>
+            <strong>Site estático</strong>
+            <p>Online · AMEVURI v5.4</p>
+          </div>
+        </article>
+        <article class="diagnostic-card" data-diag-functions>
+          <span class="diag-dot"></span>
+          <div>
+            <strong>Cloudflare Worker APIs</strong>
+            <p>Verificando…</p>
+          </div>
+        </article>
+        <article class="diagnostic-card" data-diag-shipping>
+          <span class="diag-dot"></span>
+          <div>
+            <strong>Melhor Envio</strong>
+            <p>Verificando…</p>
+          </div>
+        </article>
+        <article class="diagnostic-card" data-diag-payment>
+          <span class="diag-dot"></span>
+          <div>
+            <strong>SumUp</strong>
+            <p>Verificando…</p>
+          </div>
+        </article>
+        <article class="diagnostic-card" data-diag-email>
+          <span class="diag-dot"></span>
+          <div>
+            <strong>Email transacional</strong>
+            <p>Verificando…</p>
+          </div>
+        </article>
+      </div>
+      <div class="hero-actions diagnostic-actions">
+        <a class="btn btn-primary" href="/melhor-envio-conectar"
+          >Configurar Melhor Envio</a
+        ><a class="btn btn-ghost" href="/admin-pedidos">Gestão de pedidos</a
+        ><a class="btn btn-ghost" href="/checkout">Abrir checkout</a>
+      </div>
+      <p class="diagnostic-help" data-diag-help>
+        Se alguma etapa aparecer como indisponível, confirme se a pasta
+        <code>public/</code>, o arquivo <code>wrangler.jsonc</code> e a pasta
+        <code>src/</code> foram enviados ao GitHub e se o último deploy do
+        Worker terminou com sucesso.
+      </p>
+    </main>
+    <script src="/script.js"></script>
+    <script>
+      (async () => {
+        const f = document.querySelector("[data-diag-functions]");
+        const s = document.querySelector("[data-diag-shipping]");
+        const p = document.querySelector("[data-diag-payment]");
+        const e = document.querySelector("[data-diag-email]");
+        const set = (el, ok, text) => {
+          el.querySelector(".diag-dot").classList.toggle("ok", ok);
+          el.querySelector(".diag-dot").classList.toggle("bad", !ok);
+          el.querySelector("p").textContent = text;
+        };
+        try {
+          const health = await fetch("/api/health", { cache: "no-store" });
+          if (!health.ok) throw new Error();
+          set(f, true, "Online · backend publicado");
+        } catch {
+          set(f, false, "Não publicado ou deploy incompleto");
+          set(s, false, "Aguardando Functions");
+          set(p, false, "Aguardando Functions");
+          set(e, false, "Aguardando Functions");
+          return;
+        }
+        try {
+          const r = await fetch("/api/config-status", { cache: "no-store" });
+          const d = await r.json();
+          if (!r.ok || !d.ok) throw new Error();
+          try {
+            const qr = await fetch("/api/shipping-status", {
+              cache: "no-store",
+            });
+            const qd = await qr.json();
+            if (qr.ok && qd.ok && qd.ready)
+              set(s, true, "Melhor Envio acessível · consulte uma cotação no checkout");
+            else if (qd.code === "SHIPPING_NOT_AUTHORIZED")
+              set(s, false, "Credenciais presentes · falta autorizar");
+            else if (qd.code === "SHIPPING_TOKEN_INVALID")
+              set(s, false, "Autorização expirada ou revogada");
+            else if (qd.code === "SHIPPING_PERMISSION_DENIED")
+              set(s, false, "Token sem permissão de cotação");
+            else if (qd.configured === false)
+              set(s, false, "Falta configuração do aplicativo");
+            else
+              set(
+                s,
+                false,
+                "Integração presente · verifique autorização/serviços",
+              );
+          } catch {
+            set(
+              s,
+              false,
+              d.shipping?.authorized
+                ? "Autorizado · falha ao consultar provedor"
+                : d.shipping?.clientSecretConfigured
+                  ? "Credenciais presentes · falta autorizar"
+                  : "Falta configuração do aplicativo",
+            );
+          }
+          if (!d.payment?.configured) {
+            set(p, false, "Faltam API Key e/ou Merchant Code");
+          } else {
+            try {
+              const sr = await fetch("/api/sumup-status", {
+                cache: "no-store",
+              });
+              const sd = await sr.json();
+              if (sd.configured && sd.providerReachable) {
+                const methods = [];
+                if (sd.pixAvailable) methods.push("PIX");
+                if (sd.cardAvailable) methods.push("cartão");
+                set(
+                  p,
+                  true,
+                  methods.length
+                    ? `Conectada · ${methods.join(" + ")} · Hosted Checkout`
+                    : "Conectada · Hosted Checkout",
+                );
+              } else if (sd.configured) {
+                set(
+                  p,
+                  false,
+                  "Credenciais presentes · valide API Key/Merchant Code",
+                );
+              } else set(p, false, "Faltam API Key e/ou Merchant Code");
+            } catch {
+              set(p, false, "Não foi possível consultar a SumUp");
+            }
+          }
+          try {
+            const er = await fetch("/api/email-status", { cache: "no-store" });
+            const ed = await er.json();
+            if (er.ok && ed.configured)
+              set(
+                e,
+                true,
+                "Credenciais presentes · envio e domínio precisam de validação no Resend",
+              );
+            else set(e, false, "Configure RESEND_API_KEY e AMEVURI_EMAIL_FROM");
+          } catch {
+            set(e, false, "Não foi possível verificar o serviço de email");
+          }
+        } catch {
+          set(s, false, "Não foi possível verificar");
+          set(p, false, "Não foi possível verificar");
+          set(e, false, "Não foi possível verificar");
+        }
+      })();
+    </script>
+  </body>
+</html>
